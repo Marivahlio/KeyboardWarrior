@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="KeyboardWarrior"
-config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.0", "C#", "Forward Plus")
+config/icon="res://Media/Sprites/icon.svg"
 
 [dotnet]
 

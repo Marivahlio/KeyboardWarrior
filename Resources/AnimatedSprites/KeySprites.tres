@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://ba231t7jn7nl3"]
+
+[ext_resource type="Texture2D" uid="uid://bckch0hm43hj3" path="res://Media/Sprites/KeyOutline.png" id="1_xl4bu"]
+[ext_resource type="Texture2D" uid="uid://dih6mgdvt7sf5" path="res://Media/Sprites/KeyFull.png" id="2_esp13"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xl4bu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_esp13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

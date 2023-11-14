@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca6jhvw30suci"]
+
+[ext_resource type="SpriteFrames" uid="uid://ba231t7jn7nl3" path="res://Resources/AnimatedSprites/KeySprites.tres" id="1_chgvj"]
+
+[node name="Key" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_chgvj")
+centered = false
