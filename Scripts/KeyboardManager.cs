@@ -61,7 +61,6 @@ public partial class KeyboardManager : Node
 		{
 			if (eventKey.IsPressed())
 			{
-				GD.Print(eventKey.KeyLabel);
 				HandleKeyPress(eventKey.PhysicalKeycode);
 			}
 		}
@@ -69,6 +68,11 @@ public partial class KeyboardManager : Node
 
 	private void HandleKeyPress(Key pKey)
 	{
+		if (FKeyData.ContainsKey(pKey) == false)
+		{
+			return;
+		}
+		
 		AnimatedSprite2D node = FKeyboard.GetChild<AnimatedSprite2D>(FKeyData[pKey].GetGlobalIndex());
 		node.Frame = 1;
 	}
