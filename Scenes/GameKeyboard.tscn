@@ -1,0 +1,151 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbttiyx867ot7"]
+
+[ext_resource type="PackedScene" uid="uid://ca6jhvw30suci" path="res://Scenes/BaseScenes/Key.tscn" id="1_ax3i6"]
+[ext_resource type="Script" path="res://Scripts/BaseObjects/GameKeyboard.cs" id="1_ciq0i"]
+
+[node name="Keyboard" type="MarginContainer" node_paths=PackedStringArray("FInteractableKeyParent")]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -248.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_ciq0i")
+FInteractableKeyParent = NodePath("FlowContainer")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.498039, 0.498039, 0.498039, 1)
+
+[node name="FlowContainer" type="FlowContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 12
+alignment = 1
+
+[node name="Key" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key2" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key3" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key4" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key5" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key6" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key7" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key8" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key9" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key10" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key11" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key12" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key13" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key14" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key15" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key16" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key17" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key18" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key19" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key20" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key21" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key22" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key23" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key24" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key25" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key26" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key27" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key28" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key29" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key30" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key31" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key32" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key33" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key34" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key35" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key36" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key37" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key38" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key39" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2
+
+[node name="Key40" parent="FlowContainer" instance=ExtResource("1_ax3i6")]
+layout_mode = 2

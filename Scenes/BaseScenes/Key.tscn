@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca6jhvw30suci"]
+
+[ext_resource type="Texture2D" uid="uid://bckch0hm43hj3" path="res://Media/Sprites/KeyOutline.png" id="1_nwtuu"]
+[ext_resource type="Script" path="res://Scripts/BaseObjects/InteractableKey.cs" id="2_y5nus"]
+[ext_resource type="Texture2D" uid="uid://dih6mgdvt7sf5" path="res://Media/Sprites/KeyFull.png" id="3_3yele"]
+
+[node name="Image" type="TextureRect"]
+custom_minimum_size = Vector2(90, 90)
+offset_right = 90.0
+offset_bottom = 90.0
+pivot_offset = Vector2(45, 45)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_nwtuu")
+expand_mode = 1
+script = ExtResource("2_y5nus")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 90.0
+texture = ExtResource("3_3yele")
+expand_mode = 1

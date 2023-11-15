@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqs5c14ghg17i"]
+
+[ext_resource type="Script" path="res://Scripts/KeyboardInputHandler.cs" id="1_axmyq"]
+
+[node name="KeyboardManager" type="Node" groups=["KeyboardManager"]]
+script = ExtResource("1_axmyq")
