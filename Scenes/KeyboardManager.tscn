@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Scripts/KeyboardInputHandler.cs" id="1_axmyq"]
 
-[node name="KeyboardManager" type="Node" groups=["KeyboardManager"]]
+[node name="KeyboardManager" type="Node"]
 script = ExtResource("1_axmyq")

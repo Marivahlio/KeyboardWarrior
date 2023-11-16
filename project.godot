@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Levels/Introduction.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://Media/Sprites/icon.svg"
 
+[display]
+
+window/size/mode=2
+
 [dotnet]
 
 project/assembly_name="KeyboardWarrior"

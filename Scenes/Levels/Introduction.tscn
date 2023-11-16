@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckkc85cms8ohx"]
+[gd_scene load_steps=10 format=3 uid="uid://ckkc85cms8ohx"]
 
 [ext_resource type="PackedScene" uid="uid://dqs5c14ghg17i" path="res://Scenes/KeyboardManager.tscn" id="1_hgc2x"]
 [ext_resource type="PackedScene" uid="uid://cbttiyx867ot7" path="res://Scenes/GameKeyboard.tscn" id="2_m5v0u"]
@@ -7,19 +7,50 @@
 [ext_resource type="Texture2D" uid="uid://bckch0hm43hj3" path="res://Media/Sprites/KeyOutline.png" id="5_ephdx"]
 [ext_resource type="Texture2D" uid="uid://dih6mgdvt7sf5" path="res://Media/Sprites/KeyFull.png" id="5_ice7y"]
 
+[sub_resource type="Curve" id="Curve_8iebf"]
+_data = [Vector2(0, 0), 0.0, 15.2308, 0, 1, Vector2(0.0656566, 1), 15.2308, 0.0, 1, 1, Vector2(0.909091, 1), 0.0, -10.9, 1, 1, Vector2(1, 0.0090909), -10.9, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ql8m4"]
+curve = SubResource("Curve_8iebf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_656r3"]
+emission_shape = 3
+emission_box_extents = Vector3(2000, 2000, 1)
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_ql8m4")
+color = Color(0, 0, 0, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+turbulence_noise_speed = Vector3(0.1, 0.1, 0.5)
+turbulence_influence_max = 0.3
+
 [node name="Introduction" type="Node"]
 
 [node name="KeyboardManager" parent="." node_paths=PackedStringArray("FGameManager") instance=ExtResource("1_hgc2x")]
 FGameManager = NodePath("../GameManager")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("FColorCodeParent", "FInputHandler", "FGameKeyboard") groups=["GameManager"]]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("FColorCodeParent", "FBackground", "FBackgroundParticles", "FInputHandler", "FInteractableKeysParent")]
 script = ExtResource("2_ppw5p")
 FPressedColors = Array[Color]([Color(1, 0.768627, 0.631373, 1), Color(0.701961, 1, 0.372549, 1), Color(0.490196, 0.796078, 1, 1), Color(1, 0.537255, 0.992157, 1)])
 FRestColors = Array[Color]([Color(1, 0.619608, 0.372549, 1), Color(0.592157, 0.929412, 0, 1), Color(0.137255, 0.705882, 1, 1), Color(1, 0.333333, 1, 1)])
 FColorCodeParent = NodePath("../UI/Control")
 FColorCodeFullImage = ExtResource("5_ice7y")
+FBackground = NodePath("../UI/ColorRect")
+FBackgroundParticles = NodePath("../UI/BackgroundParticles")
 FInputHandler = NodePath("../KeyboardManager")
-FGameKeyboard = NodePath("../UI/Keyboard")
+FInteractableKeysParent = NodePath("../UI/Keyboard/FlowContainer")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -30,13 +61,21 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
+self_modulate = Color(0.196078, 0.196078, 0.196078, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="BackgroundParticles" type="GPUParticles2D" parent="UI"]
+position = Vector2(582, 317)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_656r3")
+lifetime = 10.0
+preprocess = 5.0
+fixed_fps = 144
 
 [node name="Keyboard" parent="UI" instance=ExtResource("2_m5v0u")]
 layout_mode = 1
