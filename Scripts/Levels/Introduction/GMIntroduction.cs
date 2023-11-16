@@ -5,7 +5,7 @@ using System.IO;
 
 public partial class GMIntroduction : GameManager
 {
-	private enum LevelState {ColoringKeyboard, EnteringPasscode}
+	private enum LevelState {Transitioning, ColoringKeyboard, EnteringPasscode}
 
 	[Export] public Godot.Collections.Array<Color> FPressedColors;
 	[Export] public Godot.Collections.Array<Color> FRestColors;
@@ -75,7 +75,7 @@ public partial class GMIntroduction : GameManager
 		base.HandleKeyPress(pKeyData);
 
 		int PressedKeyGlobalIndex = pKeyData.GetGlobalIndex();
-		FInteracatableKeys[PressedKeyGlobalIndex].DoAction();
+		((IKIntroduction)FInteracatableKeys[PressedKeyGlobalIndex]).OnKeyPressed();
 		FKeysToPress[PressedKeyGlobalIndex] = 0;
 
 		if (FBackgroundtween != null && FBackgroundtween.IsRunning())
@@ -83,9 +83,8 @@ public partial class GMIntroduction : GameManager
 			FBackgroundtween.Stop();
 		}
 
-		FBackground.Color = FPressedColors[pKeyData.GetRowIndex()];
 		FBackgroundtween = GetTree().CreateTween();
-		FBackgroundtween.TweenProperty(FBackground, "color", new Color(1, 1, 1, 1), 1f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
+		FBackgroundtween.TweenProperty(FBackground, "color", FPressedColors[pKeyData.GetRowIndex()], 0.5f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
 
 		if (FLevelState == LevelState.ColoringKeyboard)
 		{
@@ -96,6 +95,7 @@ public partial class GMIntroduction : GameManager
 
 			if (HaveAllKeysBeenPressed())
 			{
+				SwitchLevelState(LevelState.Transitioning);
 				FBackgroundParticlesTween = GetTree().CreateTween().SetParallel(true);
 				FBackgroundParticlesTween.TweenProperty(FBackgroundParticles.ProcessMaterial, "color", new Color(1, 1, 1, 1), 3f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
 				FBackgroundParticlesTween.TweenProperty(FBackgroundParticles, "speed_scale", 0.8f, 2f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
@@ -124,6 +124,20 @@ public partial class GMIntroduction : GameManager
 				FBackgroundParticlesTween.TweenProperty(FBackgroundParticles, "speed_scale", 1f, 2f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
 			}
 		}
+	}
+
+	public override void HandleKeyUp(InteractableKeyData pKeyData)
+	{
+		int PressedKeyGlobalIndex = pKeyData.GetGlobalIndex();
+		((IKIntroduction)FInteracatableKeys[PressedKeyGlobalIndex]).OnKeyUp();
+
+		if (FBackgroundtween != null && FBackgroundtween.IsRunning())
+		{
+			FBackgroundtween.Stop();
+		}
+
+		FBackgroundtween = GetTree().CreateTween();
+		FBackgroundtween.TweenProperty(FBackground, "color", new Color(1, 1, 1, 1), 2f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
 	}
 
 	private bool HaveAllKeysBeenPressed()

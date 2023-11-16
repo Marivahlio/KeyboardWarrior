@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbttiyx867ot7"]
+[gd_scene load_steps=2 format=3 uid="uid://cbttiyx867ot7"]
 
 [ext_resource type="PackedScene" uid="uid://ca6jhvw30suci" path="res://Scenes/BaseScenes/Key.tscn" id="1_ax3i6"]
-[ext_resource type="Script" path="res://Scripts/BaseObjects/GameKeyboard.cs" id="1_ciq0i"]
 
 [node name="Keyboard" type="MarginContainer"]
 anchors_preset = 14
@@ -16,7 +15,6 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
-script = ExtResource("1_ciq0i")
 
 [node name="FlowContainer" type="FlowContainer" parent="."]
 layout_mode = 2
