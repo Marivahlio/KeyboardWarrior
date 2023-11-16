@@ -4,10 +4,41 @@ using System.Collections.Generic;
 
 public partial class IKIntroduction : InteractableKey
 {
-	public override void DoAction() 
+	private Color FPressedColor;
+	private Color FRestColor;
+	private Tween FActiveColorTween;
+	private TextureRect FFilledImage;
+	private GpuParticles2D FPressedParticles;
+
+	public void Setup()
 	{
-		Tween tween = GetTree().CreateTween();
-		tween.TweenProperty(GetChild(0), "modulate", new Color(1, 1, 1, 1), 0.5f);
+		FFilledImage = GetChild<TextureRect>(0);
+		FPressedParticles = GetChild<GpuParticles2D>(1);
+	}
+	
+	public override void DoAction() 
+	{	
+		if (FActiveColorTween != null && FActiveColorTween.IsRunning())
+		{
+			FActiveColorTween.Stop();
+		}
+
+		FPressedParticles.Restart();
+		FPressedParticles.Emitting = true;
+		
+		FFilledImage.Modulate = FPressedColor;
+
+		FActiveColorTween = GetTree().CreateTween();
+		FActiveColorTween.TweenProperty(FFilledImage, "scale", new Vector2(1.1f, 1.1f), 0.05f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
+		FActiveColorTween.TweenProperty(FFilledImage, "scale", new Vector2(1f, 1f), 0.5f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
+		FActiveColorTween.SetParallel().TweenProperty(FFilledImage, "modulate", FRestColor, 0.2f);
+	}
+
+	public void SetColors(Color pPressedColor, Color pRestColor)
+	{
+		FPressedColor = pPressedColor;
+		FRestColor = pRestColor;
+		((ParticleProcessMaterial)FPressedParticles.ProcessMaterial).Color = FRestColor;
 	}
 
 	public void PlayScaleTween(Vector2 pScale, float pDuration, float delay)

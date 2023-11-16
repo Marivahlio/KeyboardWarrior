@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class KeyboardInputHandler : Node
 {
@@ -20,7 +21,32 @@ public partial class KeyboardInputHandler : Node
 			{
 				HandleKeyPress(eventKey.PhysicalKeycode);
 			}
+
+			// TODO: Make it so pressed buttons are stored in a list
+			// If its !Pressed and part of the list, call a different event
 		}
+	}
+
+	public InteractableKeyData GetKeyData(Key pKey)
+	{
+		if (FKeyData.ContainsKey(pKey) == false)
+		{
+			GD.PushError("Key not found: " + pKey.ToString());
+			return null;
+		}
+
+		return FKeyData[pKey];
+	}
+
+	public InteractableKeyData GetKeyData(int pIndex)
+	{
+		if (pIndex >= FKeyData.Count)
+		{
+			GD.PushError("Index out of bounds: " + pIndex);
+			return null;
+		}
+
+		return FKeyData.ElementAt(pIndex).Value;
 	}
 
 	private void HandleKeyPress(Key pKey)

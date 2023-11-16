@@ -9,11 +9,11 @@ public class InteractableKeyData
 	private int indexInColumn;
 	private int indexGlobal;
 
-	public InteractableKeyData(Key pKey, int pIndexInRow, int pIndexInColumn, int pIndexGlobal)
+	public InteractableKeyData(Key pKey, int pIndexInColumn, int pIndexInRow, int pIndexGlobal)
 	{
 		key = pKey;
-		indexInRow = pIndexInRow;
 		indexInColumn = pIndexInColumn;
+		indexInRow = pIndexInRow;
 		indexGlobal = pIndexGlobal; 
 	}
 

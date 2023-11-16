@@ -6,13 +6,16 @@ public partial class GMIntroduction : GameManager
 {
 	private enum LevelState {ColoringKeyboard, EnteringPasscode}
 
-	[Export] public Godot.Collections.Array<Color> FLockColors;
+	[Export] public Godot.Collections.Array<Color> FPressedColors;
+	[Export] public Godot.Collections.Array<Color> FRestColors;
 
 	private Dictionary<int, int> FKeysToPress = new();
 	private LevelState FLevelState = LevelState.ColoringKeyboard;
 
 	public override void _Ready()
 	{
+		base._Ready();
+
 		// 40 interactable keys in total, might make this a static const value later on
 		for (int i = 0; i < 40; i++)
 		{
@@ -22,6 +25,8 @@ public partial class GMIntroduction : GameManager
 		for (int i = 0; i < FGameKeyboard.GetInteractableKeys().Count; i++)
 		{
 			IKIntroduction InteractableKey = (IKIntroduction)FGameKeyboard.GetInteractableKeys()[i];
+			InteractableKey.Setup();
+			InteractableKey.SetColors(FPressedColors[FInputHandler.GetKeyData(i).GetRowIndex()], FRestColors[FInputHandler.GetKeyData(i).GetRowIndex()]);
 			InteractableKey.PlayScaleTween(Vector2.Zero, 0, 0);
 		}
 
