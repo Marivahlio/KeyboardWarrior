@@ -7,4 +7,5 @@ public partial class GameManager : Node
 	[Export] public GameKeyboard FGameKeyboard;
 
 	public virtual void HandleKeyPress(InteractableKeyData pKeyData) {}
+	public virtual void HandleKeyUp(InteractableKeyData pKeyData) {}
 }

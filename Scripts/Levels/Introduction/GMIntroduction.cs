@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public partial class GMIntroduction : GameManager
 {
@@ -76,10 +77,6 @@ public partial class GMIntroduction : GameManager
 		{
 			if (HaveAllKeysBeenPressed())
 			{
-				// Uncover passcode
-				SwitchLevelState(LevelState.EnteringPasscode);
-				GD.Print("All keys pressed");
-
 				for (int i = 0; i < FColorCodeParent.GetChildren().Count; i++)
 				{
 					TextureRect Item = FColorCodeParent.GetChild<TextureRect>(i);
@@ -87,6 +84,7 @@ public partial class GMIntroduction : GameManager
 					tween.TweenProperty(Item, "scale", new Vector2(0, 1), 0.5f).SetDelay(0.5f * i).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
 					tween.TweenCallback(Callable.From(() => Item.Texture = FColorCodeFullImage));
 					tween.TweenProperty(Item, "scale", Vector2.One, 0.5f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
+					tween.TweenCallback(Callable.From(() => SwitchLevelState(LevelState.EnteringPasscode)));
 				}
 			}
 		}

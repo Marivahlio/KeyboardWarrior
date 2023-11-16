@@ -8,11 +8,14 @@ public partial class KeyboardInputHandler : Node
 	private Dictionary<Key, InteractableKeyData> FKeyData = new();
 	[Export] private GameManager FGameManager;
 
+	private List<Key> FHeldKeys = new();
+
 	public override void _Ready()
 	{
 		GenerateKeyData();
 	}
 
+	// This function gets the unhandled input from the engine and passes it through to be processed
 	public override void _UnhandledInput(InputEvent pEvent)
 	{
 		if (pEvent is InputEventKey eventKey)
@@ -20,13 +23,18 @@ public partial class KeyboardInputHandler : Node
 			if (eventKey.IsPressed())
 			{
 				HandleKeyPress(eventKey.PhysicalKeycode);
+				return;
 			}
 
-			// TODO: Make it so pressed buttons are stored in a list
-			// If its !Pressed and part of the list, call a different event
+			if (eventKey.IsPressed() == false)
+			{
+				HandleKeyUp(eventKey.PhysicalKeycode);
+				return;
+			}
 		}
 	}
 
+	// Get key data by key
 	public InteractableKeyData GetKeyData(Key pKey)
 	{
 		if (FKeyData.ContainsKey(pKey) == false)
@@ -38,6 +46,7 @@ public partial class KeyboardInputHandler : Node
 		return FKeyData[pKey];
 	}
 
+	// Get key data by index
 	public InteractableKeyData GetKeyData(int pIndex)
 	{
 		if (pIndex >= FKeyData.Count)
@@ -49,18 +58,40 @@ public partial class KeyboardInputHandler : Node
 		return FKeyData.ElementAt(pIndex).Value;
 	}
 
+	public bool IsKeyBeingHeld(Key pKey)
+	{
+		return FHeldKeys.Contains(pKey);
+	}
+
+	// This function calls HandleKeyPress on the scene's game manager if it passes the checks
 	private void HandleKeyPress(Key pKey)
 	{
-		if (FKeyData.ContainsKey(pKey) == false)
+		if (FKeyData.ContainsKey(pKey) == false || FHeldKeys.Contains(pKey))
 		{
 			return;
 		}
 		
+		FHeldKeys.Add(pKey);
 		FGameManager.HandleKeyPress(FKeyData[pKey]);
 	}
 
+	// This function calls HandleKeyUp on the scene's game manager if it passes the checks
+	private void HandleKeyUp(Key pKey)
+	{
+		if (FKeyData.ContainsKey(pKey) == false || FHeldKeys.Contains(pKey) == false)
+		{
+			return;
+		}
+
+		FHeldKeys.Remove(pKey);
+		FGameManager.HandleKeyUp(FKeyData[pKey]);
+	}
+
+	// This is all the 40 keys we use for normal gameplay
+	// If I want to add extra keys such as tab/shift I would have to make special rules/struct for that
 	private void GenerateKeyData()
 	{
+		// First keyboard row
 		FKeyData.Add(Key.Key1, new InteractableKeyData(Key.Key1, 0, 0, 0));
 		FKeyData.Add(Key.Key2, new InteractableKeyData(Key.Key2, 1, 0, 1));
 		FKeyData.Add(Key.Key3, new InteractableKeyData(Key.Key3, 2, 0, 2));
@@ -72,6 +103,7 @@ public partial class KeyboardInputHandler : Node
 		FKeyData.Add(Key.Key9, new InteractableKeyData(Key.Key9, 8, 0, 8));
 		FKeyData.Add(Key.Key0, new InteractableKeyData(Key.Key0, 9, 0, 9));
 
+		// Second keyboard row
 		FKeyData.Add(Key.Q, new InteractableKeyData(Key.Q, 0, 1, 10));
 		FKeyData.Add(Key.W, new InteractableKeyData(Key.W, 1, 1, 11));
 		FKeyData.Add(Key.E, new InteractableKeyData(Key.E, 2, 1, 12));
@@ -83,6 +115,7 @@ public partial class KeyboardInputHandler : Node
 		FKeyData.Add(Key.O, new InteractableKeyData(Key.O, 8, 1, 18));
 		FKeyData.Add(Key.P, new InteractableKeyData(Key.P, 9, 1, 19));
 
+		// Third keyboard row
 		FKeyData.Add(Key.A, new InteractableKeyData(Key.A, 0, 2, 20));
 		FKeyData.Add(Key.S, new InteractableKeyData(Key.S, 1, 2, 21));
 		FKeyData.Add(Key.D, new InteractableKeyData(Key.D, 2, 2, 22));
@@ -94,6 +127,7 @@ public partial class KeyboardInputHandler : Node
 		FKeyData.Add(Key.L, new InteractableKeyData(Key.L, 8, 2, 28));
 		FKeyData.Add(Key.Semicolon, new InteractableKeyData(Key.Semicolon, 9, 2, 29));
 
+		// Fourth keyboard row
 		FKeyData.Add(Key.Z, new InteractableKeyData(Key.Z, 0, 3, 30));
 		FKeyData.Add(Key.X, new InteractableKeyData(Key.X, 1, 3, 31));
 		FKeyData.Add(Key.C, new InteractableKeyData(Key.C, 2, 3, 32));
