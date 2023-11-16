@@ -19,10 +19,6 @@ theme_override_constants/margin_bottom = 20
 script = ExtResource("1_ciq0i")
 FInteractableKeyParent = NodePath("FlowContainer")
 
-[node name="BG" type="ColorRect" parent="."]
-layout_mode = 2
-color = Color(0.498039, 0.498039, 0.498039, 1)
-
 [node name="FlowContainer" type="FlowContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 4

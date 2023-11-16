@@ -8,6 +8,8 @@ public partial class GMIntroduction : GameManager
 
 	[Export] public Godot.Collections.Array<Color> FPressedColors;
 	[Export] public Godot.Collections.Array<Color> FRestColors;
+	[Export] public Control FColorCodeParent;
+	[Export] public Texture2D FColorCodeFullImage;
 
 	private Dictionary<int, int> FKeysToPress = new();
 	private LevelState FLevelState = LevelState.ColoringKeyboard;
@@ -48,6 +50,20 @@ public partial class GMIntroduction : GameManager
 		}
 	}
 
+	public override void _Process(double delta)
+	{
+		if (Input.IsKeyPressed(Key.Enter))
+		{
+			for (int i = 1; i < FGameKeyboard.GetInteractableKeys().Count; i++)
+			{
+				((IKIntroduction)FGameKeyboard.GetInteractableKeys()[i]).DoAction();
+				FKeysToPress[i] = 0;
+			}
+
+			HandleKeyPress(FInputHandler.GetKeyData(0));
+		}
+	}
+
 	public override void HandleKeyPress(InteractableKeyData pKeyData)
 	{
 		base.HandleKeyPress(pKeyData);
@@ -63,6 +79,15 @@ public partial class GMIntroduction : GameManager
 				// Uncover passcode
 				SwitchLevelState(LevelState.EnteringPasscode);
 				GD.Print("All keys pressed");
+
+				for (int i = 0; i < FColorCodeParent.GetChildren().Count; i++)
+				{
+					TextureRect Item = FColorCodeParent.GetChild<TextureRect>(i);
+					Tween tween = GetTree().CreateTween();
+					tween.TweenProperty(Item, "scale", new Vector2(0, 1), 0.5f).SetDelay(0.5f * i).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
+					tween.TweenCallback(Callable.From(() => Item.Texture = FColorCodeFullImage));
+					tween.TweenProperty(Item, "scale", Vector2.One, 0.5f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Quad);
+				}
 			}
 		}
 	}
