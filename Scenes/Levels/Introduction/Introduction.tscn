@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckkc85cms8ohx"]
+[gd_scene load_steps=9 format=3 uid="uid://ckkc85cms8ohx"]
 
-[ext_resource type="PackedScene" uid="uid://dqs5c14ghg17i" path="res://Scenes/KeyboardManager.tscn" id="1_hgc2x"]
-[ext_resource type="PackedScene" uid="uid://cbttiyx867ot7" path="res://Scenes/GameKeyboard.tscn" id="2_m5v0u"]
-[ext_resource type="Script" path="res://Scripts/Levels/Introduction/GMIntroduction.cs" id="2_ppw5p"]
-[ext_resource type="Script" path="res://Scripts/Levels/Introduction/IKIntroduction.cs" id="4_rd5vg"]
-[ext_resource type="Texture2D" uid="uid://bckch0hm43hj3" path="res://Media/Sprites/KeyOutline.png" id="5_ephdx"]
-[ext_resource type="Texture2D" uid="uid://dih6mgdvt7sf5" path="res://Media/Sprites/KeyFull.png" id="5_ice7y"]
+[ext_resource type="PackedScene" uid="uid://dqs5c14ghg17i" path="res://Scenes/KeyboardManager.tscn" id="1_ykf0m"]
+[ext_resource type="Script" path="res://Scripts/Levels/Introduction/GMIntroduction.cs" id="2_3nno6"]
+[ext_resource type="PackedScene" uid="uid://cbttiyx867ot7" path="res://Scenes/GameKeyboard.tscn" id="4_8d6oj"]
+[ext_resource type="Script" path="res://Scripts/Levels/Introduction/IKIntroduction.cs" id="5_up7y6"]
+[ext_resource type="PackedScene" uid="uid://bcg1sej5efpmo" path="res://Scenes/Levels/Introduction/ColorCodeObject.tscn" id="6_uovlp"]
 
 [sub_resource type="Curve" id="Curve_8iebf"]
 _data = [Vector2(0, 0), 0.0, 15.2308, 0, 1, Vector2(0.0656566, 1), 15.2308, 0.0, 1, 1, Vector2(0.909091, 1), 0.0, -10.9, 1, 1, Vector2(1, 0.0090909), -10.9, 0.0, 1, 0]
@@ -38,15 +37,14 @@ turbulence_influence_max = 0.3
 
 [node name="Introduction" type="Node"]
 
-[node name="KeyboardManager" parent="." node_paths=PackedStringArray("FGameManager") instance=ExtResource("1_hgc2x")]
+[node name="KeyboardManager" parent="." node_paths=PackedStringArray("FGameManager") instance=ExtResource("1_ykf0m")]
 FGameManager = NodePath("../GameManager")
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("FColorCodeParent", "FBackground", "FBackgroundParticles", "FInputHandler", "FInteractableKeysParent")]
-script = ExtResource("2_ppw5p")
+script = ExtResource("2_3nno6")
 FPressedColors = Array[Color]([Color(1, 0.819608, 0.709804, 1), Color(0.839216, 1, 0.701961, 1), Color(0.52549, 0.807843, 1, 1), Color(1, 0.611765, 0.988235, 1)])
 FRestColors = Array[Color]([Color(1, 0.619608, 0.372549, 1), Color(0.592157, 0.929412, 0, 1), Color(0.137255, 0.705882, 1, 1), Color(1, 0.333333, 1, 1)])
 FColorCodeParent = NodePath("../UI/Control")
-FColorCodeFullImage = ExtResource("5_ice7y")
 FBackground = NodePath("../UI/ColorRect")
 FBackgroundParticles = NodePath("../UI/BackgroundParticles")
 FInputHandler = NodePath("../KeyboardManager")
@@ -77,7 +75,7 @@ lifetime = 10.0
 preprocess = 5.0
 fixed_fps = 144
 
-[node name="Keyboard" parent="UI" instance=ExtResource("2_m5v0u")]
+[node name="Keyboard" parent="UI" instance=ExtResource("4_8d6oj")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -99,124 +97,124 @@ custom_minimum_size = Vector2(1110, 0)
 size_flags_horizontal = 4
 
 [node name="Key" parent="UI/Keyboard/FlowContainer" index="0"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key2" parent="UI/Keyboard/FlowContainer" index="1"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key3" parent="UI/Keyboard/FlowContainer" index="2"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key4" parent="UI/Keyboard/FlowContainer" index="3"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key5" parent="UI/Keyboard/FlowContainer" index="4"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key6" parent="UI/Keyboard/FlowContainer" index="5"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key7" parent="UI/Keyboard/FlowContainer" index="6"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key8" parent="UI/Keyboard/FlowContainer" index="7"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key9" parent="UI/Keyboard/FlowContainer" index="8"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key10" parent="UI/Keyboard/FlowContainer" index="9"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key11" parent="UI/Keyboard/FlowContainer" index="10"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key12" parent="UI/Keyboard/FlowContainer" index="11"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key13" parent="UI/Keyboard/FlowContainer" index="12"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key14" parent="UI/Keyboard/FlowContainer" index="13"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key15" parent="UI/Keyboard/FlowContainer" index="14"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key16" parent="UI/Keyboard/FlowContainer" index="15"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key17" parent="UI/Keyboard/FlowContainer" index="16"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key18" parent="UI/Keyboard/FlowContainer" index="17"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key19" parent="UI/Keyboard/FlowContainer" index="18"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key20" parent="UI/Keyboard/FlowContainer" index="19"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key21" parent="UI/Keyboard/FlowContainer" index="20"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key22" parent="UI/Keyboard/FlowContainer" index="21"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key23" parent="UI/Keyboard/FlowContainer" index="22"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key24" parent="UI/Keyboard/FlowContainer" index="23"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key25" parent="UI/Keyboard/FlowContainer" index="24"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key26" parent="UI/Keyboard/FlowContainer" index="25"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key27" parent="UI/Keyboard/FlowContainer" index="26"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key28" parent="UI/Keyboard/FlowContainer" index="27"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key29" parent="UI/Keyboard/FlowContainer" index="28"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key30" parent="UI/Keyboard/FlowContainer" index="29"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key31" parent="UI/Keyboard/FlowContainer" index="30"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key32" parent="UI/Keyboard/FlowContainer" index="31"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key33" parent="UI/Keyboard/FlowContainer" index="32"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key34" parent="UI/Keyboard/FlowContainer" index="33"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key35" parent="UI/Keyboard/FlowContainer" index="34"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key36" parent="UI/Keyboard/FlowContainer" index="35"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key37" parent="UI/Keyboard/FlowContainer" index="36"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key38" parent="UI/Keyboard/FlowContainer" index="37"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key39" parent="UI/Keyboard/FlowContainer" index="38"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Key40" parent="UI/Keyboard/FlowContainer" index="39"]
-script = ExtResource("4_rd5vg")
+script = ExtResource("5_up7y6")
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 1
@@ -225,62 +223,53 @@ anchor_right = 1.0
 offset_bottom = 386.0
 grow_horizontal = 2
 
-[node name="ColorRect2" type="TextureRect" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -365.0
-offset_top = 150.0
-offset_right = -215.0
-offset_bottom = 300.0
-grow_horizontal = 2
-pivot_offset = Vector2(65, 65)
-texture = ExtResource("5_ephdx")
-expand_mode = 1
+[node name="KeyObj1" parent="UI/Control" instance=ExtResource("6_uovlp")]
+self_modulate = Color(0.137255, 0.705882, 1, 1)
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 595.0
+offset_top = 118.0
+offset_right = 745.0
+offset_bottom = 268.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="ColorRect3" type="TextureRect" parent="UI/Control"]
+[node name="Label" parent="UI/Control/KeyObj1" index="0"]
+theme_override_colors/font_color = Color(0, 0.0862745, 0.219608, 1)
+
+[node name="KeyObj2" parent="UI/Control" instance=ExtResource("6_uovlp")]
+self_modulate = Color(0.592157, 0.929412, 0, 1)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
 offset_left = -165.0
-offset_top = 150.0
 offset_right = -15.0
-offset_bottom = 300.0
-grow_horizontal = 2
-pivot_offset = Vector2(67, 65)
-texture = ExtResource("5_ephdx")
-expand_mode = 1
 
-[node name="ColorRect4" type="TextureRect" parent="UI/Control"]
+[node name="Label" parent="UI/Control/KeyObj2" index="0"]
+theme_override_colors/font_color = Color(0.0862745, 0.176471, 0.0862745, 1)
+
+[node name="KeyObj3" parent="UI/Control" instance=ExtResource("6_uovlp")]
+self_modulate = Color(1, 0.333333, 1, 1)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
 offset_left = 35.0
-offset_top = 150.0
 offset_right = 185.0
-offset_bottom = 300.0
-grow_horizontal = 2
-pivot_offset = Vector2(65, 65)
-texture = ExtResource("5_ephdx")
-expand_mode = 1
 
-[node name="ColorRect5" type="TextureRect" parent="UI/Control"]
+[node name="Label" parent="UI/Control/KeyObj3" index="0"]
+theme_override_colors/font_color = Color(0.152941, 0.0862745, 0.207843, 1)
+
+[node name="KeyObj4" parent="UI/Control" instance=ExtResource("6_uovlp")]
+self_modulate = Color(1, 0.619608, 0.372549, 1)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
 offset_left = 235.0
-offset_top = 150.0
 offset_right = 385.0
-offset_bottom = 300.0
-grow_horizontal = 2
-pivot_offset = Vector2(65, 65)
-texture = ExtResource("5_ephdx")
-expand_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Label" parent="UI/Control/KeyObj4" index="0"]
+theme_override_colors/font_color = Color(0.121569, 0.109804, 0, 1)
 
 [editable path="UI/Keyboard"]
+[editable path="UI/Control/KeyObj1"]
+[editable path="UI/Control/KeyObj2"]
+[editable path="UI/Control/KeyObj3"]
+[editable path="UI/Control/KeyObj4"]

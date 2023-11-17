@@ -58,6 +58,18 @@ public partial class KeyboardInputHandler : Node
 		return FKeyData.ElementAt(pIndex).Value;
 	}
 
+	// Get key data by position. X = Column. Y = Row
+	public InteractableKeyData GetKeyData(Vector2I pPosition)
+	{
+		if (pPosition.X >= 10 || pPosition.Y >= 4)
+		{
+			GD.PushError("Position out of bounds: " + pPosition);
+			return null;
+		}
+
+		return GetKeyData(pPosition.X + (pPosition.Y * 10));
+	}
+
 	public bool IsKeyBeingHeld(Key pKey)
 	{
 		return FHeldKeys.Contains(pKey);

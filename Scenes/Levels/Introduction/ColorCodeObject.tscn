@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcg1sej5efpmo"]
+
+[ext_resource type="Texture2D" uid="uid://bckch0hm43hj3" path="res://Media/Sprites/KeyOutline.png" id="1_pcdh7"]
+[ext_resource type="Script" path="res://Scripts/Levels/Introduction/ColorCodeObject.cs" id="2_xxyjt"]
+[ext_resource type="Texture2D" uid="uid://dih6mgdvt7sf5" path="res://Media/Sprites/KeyFull.png" id="3_dclko"]
+[ext_resource type="FontFile" uid="uid://dt6l0mm116bsx" path="res://Media/Fonts/m5x7.ttf" id="3_wyoap"]
+
+[node name="ColorRect2" type="TextureRect" node_paths=PackedStringArray("FCodeLabel")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 75)
+texture = ExtResource("1_pcdh7")
+expand_mode = 1
+script = ExtResource("2_xxyjt")
+FCodeLabel = NodePath("Label")
+FColorCodeFullImage = ExtResource("3_dclko")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -8.0
+offset_right = 5.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+theme_override_fonts/font = ExtResource("3_wyoap")
+theme_override_font_sizes/font_size = 148
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
