@@ -60,4 +60,10 @@ public partial class IKIntroduction : InteractableKey
 		FActiveColorTween = GetTree().CreateTween();
 		FActiveColorTween.TweenProperty(this, "scale", pScale, pDuration).SetDelay(delay).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
 	}
+
+	public void PlayDissapearAnimation()
+	{
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "position", new Vector2(GD.RandRange(-50, 50) * 1000, GD.RandRange(-50, 50) * 1000), 6f).SetDelay(GD.RandRange(0f, 1.5f)).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Expo);
+	}
 }

@@ -61,18 +61,18 @@ public partial class GMIntroduction : GameManager
 	{
 		// Quick and easy debug cheat.
 		// TODO: REMOVE WHEN DONE WITH THIS LEVEL
-		if (Input.IsKeyPressed(Key.Enter))
-		{
-			for (int i = 1; i < FInteracatableKeys.Count; i++)
-			{
-				((IKIntroduction)FInteracatableKeys[i]).OnKeyPressed();
-				((IKIntroduction)FInteracatableKeys[i]).OnKeyUp();
-				FKeysToPress[i] = 0;
-			}
+		// if (Input.IsKeyPressed(Key.Enter))
+		// {
+		// 	for (int i = 1; i < FInteracatableKeys.Count; i++)
+		// 	{
+		// 		((IKIntroduction)FInteracatableKeys[i]).OnKeyPressed();
+		// 		((IKIntroduction)FInteracatableKeys[i]).OnKeyUp();
+		// 		FKeysToPress[i] = 0;
+		// 	}
 
-			HandleKeyPress(FInputHandler.GetKeyData(0));
-			((IKIntroduction)FInteracatableKeys[0]).OnKeyUp();
-		}
+		// 	HandleKeyPress(FInputHandler.GetKeyData(0));
+		// 	((IKIntroduction)FInteracatableKeys[0]).OnKeyUp();
+		// }
 
 		if (FLevelState == LevelState.EnteringPasscode)
 		{
@@ -86,12 +86,25 @@ public partial class GMIntroduction : GameManager
 					FInputHandler.IsKeyBeingHeld(BlueKey) &&
 					FInputHandler.IsKeyBeingHeld(PinkKey))
 			{
-				GD.Print("Code works!");
 				SwitchLevelState(LevelState.LevelComplete);
+
+				FBackgroundParticles.Emitting = false;
 
 				for (int i = 0; i < FInteracatableKeys.Count; i++)
 				{
 					((IKIntroduction)FInteracatableKeys[i]).OnKeyPressed();
+					((IKIntroduction)FInteracatableKeys[i]).PlayDissapearAnimation();
+				}
+
+				for (int i = 0; i < FColorCodeParent.GetChildren().Count; i++)
+				{
+					TextureRect Item = FColorCodeParent.GetChild<TextureRect>(i);
+					Vector2 FinalPosition = new(Item.Position.X, GetViewport().GetVisibleRect().Size.Y / 2 - Item.Size.Y / 2);
+					float Delay = 3f + (0.5f * i);
+
+					Tween tween = GetTree().CreateTween();
+					tween.TweenProperty(Item, "position", FinalPosition, 1.5f).SetDelay(Delay).SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Quad);
+					tween.TweenProperty(Item, "modulate", new Color(1, 1, 1, 0), 2.5f).SetDelay(3f - (0.5f * i));
 				}
 			}
 		}
